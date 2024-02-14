@@ -4,7 +4,7 @@ defmodule MyFirstWebServer.Tota do
   plug(:dispatch)
 
   get "/Fala" do
-    send_resp(conn , 200 , "Fala figas tudo bom?")
+    send_resp(conn , 200 , "Fala figas tudo bom , Talvez...?")
   end
 
   get "/figas" do
