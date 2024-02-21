@@ -1,0 +1,27 @@
+<.header>
+  Rafael <%= @rafael.id %>
+  <:subtitle>This is a rafael record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/rafael/#{@rafael}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit rafael</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @rafael.name %></:item>
+  <:item title="Age"><%= @rafael.age %></:item>
+</.list>
+
+<.back navigate={~p"/rafael"}>Back to rafael</.back>
+
+<.modal :if={@live_action == :edit} id="rafael-modal" show on_cancel={JS.patch(~p"/rafael/#{@rafael}")}>
+  <.live_component
+    module={FigasWeb.RafaelLive.FormComponent}
+    id={@rafael.id}
+    title={@page_title}
+    action={@live_action}
+    rafael={@rafael}
+    patch={~p"/rafael/#{@rafael}"}
+  />
+</.modal>

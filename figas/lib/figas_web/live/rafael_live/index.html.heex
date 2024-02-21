@@ -1,0 +1,42 @@
+<.header>
+  Listing Rafael
+  <:actions>
+    <.link patch={~p"/rafael/new"}>
+      <.button>New Rafael</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table
+  id="rafael"
+  rows={@streams.rafael_collection}
+  row_click={fn {_id, rafael} -> JS.navigate(~p"/rafael/#{rafael}") end}
+>
+  <:col :let={{_id, rafael}} label="Name"><%= rafael.name %></:col>
+  <:col :let={{_id, rafael}} label="Age"><%= rafael.age %></:col>
+  <:action :let={{_id, rafael}}>
+    <div class="sr-only">
+      <.link navigate={~p"/rafael/#{rafael}"}>Show</.link>
+    </div>
+    <.link patch={~p"/rafael/#{rafael}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, rafael}}>
+    <.link
+      phx-click={JS.push("delete", value: %{id: rafael.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+    >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="rafael-modal" show on_cancel={JS.patch(~p"/rafael")}>
+  <.live_component
+    module={FigasWeb.RafaelLive.FormComponent}
+    id={@rafael.id || :new}
+    title={@page_title}
+    action={@live_action}
+    rafael={@rafael}
+    patch={~p"/rafael"}
+  />
+</.modal>
