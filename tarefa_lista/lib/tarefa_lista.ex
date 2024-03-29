@@ -39,12 +39,12 @@ defmodule Main do
     |> String.trim()
     |> String.to_float()
 
-    x_coef = trunc( x_input * 10_000_000_000_000)
+    x_coef = trunc( x_input * 1_000)
     erro_coef = trunc(erro_input * 10_000_000_000_000_000)
 
 
-    x = Decimal.new(1, x_coef, 30)
-    erro = Decimal.new(1, erro_coef, 30)
+    x = Decimal.new(1, x_coef, -10)
+    erro = Decimal.new(1, erro_coef, -30)
 
     res = TarefaFun.calculo_soma(x, erro)
 
