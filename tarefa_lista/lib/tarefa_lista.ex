@@ -43,8 +43,8 @@ defmodule Main do
     erro_coef = trunc(erro_input * 10_000_000_000_000_000)
 
 
-    x = Decimal.new(1, x_coef, -10)
-    erro = Decimal.new(1, erro_coef, -30)
+    x = Decimal.new(1, x_coef, -1) #estava menos 10 ou era -9
+    erro = Decimal.new(1, erro_coef, -1) #estava -30
 
     res = TarefaFun.calculo_soma(x, erro)
 
