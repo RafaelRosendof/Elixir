@@ -31,7 +31,7 @@ defmodule Lista6 do
   end
   defp converte_f_c([]) , do: [] #tratando caso receba nulo
   defp converte_f_c([head | tail]) do
-    #recebe a lista e passa para a função que converte c para f
+  #recebe a lista e passa para a função que converte c para f
     [conversor(head) | converte_f_c(tail)]
   end
 
@@ -59,4 +59,33 @@ defmodule Lista6 do
     Enum.at(lista , index)
   end
 
+
+  def func_take(0 , _quantos), do : []
+    #recebe quantos e devolve a quantidade de quantos da lista
+  def func_take(_,[]), do: []
+  def func_take(n , [head | tail]) when n > 0 do
+    [head | take(n-1 , tail)]
+  end
+  def func_take(n , quantos) when is_integer(quantos) do
+    func_take(n, 1..quantos)
+  end
+
+
+  '''
+defmodule MinhasFuncoes do
+  def take(0, _sequence), do: []
+  def take(_, []), do: []
+  def take(n, [head | tail]) when n > 0 do
+    [head | take(n - 1, tail)]
+  end
+
+  def take(n, sequence) when is_integer(sequence) do
+    take(n, 1..sequence)
+  end
 end
+
+'''
+
+  #quest
+end
+
