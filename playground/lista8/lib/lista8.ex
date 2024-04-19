@@ -38,7 +38,7 @@ defmodule Lista8 do
   def abundante(x) do
     fatores = fatora(x)
     soma_fatores = Enum.sum(fatores)
-    soma_fatores > x 
+    soma_fatores > x
   end
 
   def amigos(0,b) , do: false
@@ -48,9 +48,9 @@ defmodule Lista8 do
     fatores_a = fatora(a)  #fatores de 220
     fatores_b = fatora(b)  #fatores de 284
     soma_a = Enum.sum(fatores_a) #soma a = fatores de b
-    soma_b = Enum.sum(fatores_b) #soma b = fatores de a 
+    soma_b = Enum.sum(fatores_b) #soma b = fatores de a
 
-    soma_a == b 
+    soma_a == b
     soma_b == a
 
   end
@@ -62,20 +62,35 @@ defmodule Lista8 do
   end
 
   #continuando da 7 agora
-  iSort([]) , do: []
-  iSort(h) when is_list(h) do
-    
-  end 
 
-  defp insert(x,l) when is_list(l) and l = []
-  defp insert(x , l) when  is_list(l) and x <= h do  #caso [h|t] and x <=h
-    
-  end 
+  def iSort([]) , do: [ ]
 
-  defp insert(x ,l) when is_list(l) #tendi mais nada 
+  def iSort(l) when is_list(l) do
+    [head | tail] = l
+    insert(head , iSort(tail))
+  end
+
+  defp insert(x,[]) , do: [x]
+
+  defp insert(x , [h | t]) when x <= h , do:  [x | [h | t]]
+
+  defp insert(x , [h | t]) , do: [h | insert(x,t)]
 
 
-  #pulando para a questão 9 
+  #fazendo a questão 8
+
+  def minFigas(x) when is_list(x) do
+    sorted = iSort(x)
+    hd(sorted)
+  end
+
+  def maxFigas(x) when is_list(x) do
+   sorted = iSort(x)
+   IO.puts(tl(x)) #era para printar o tail
+  end
+
+
+  #pulando para a questão 9
   #fazer essas duas implementando o método Enum.max e Enum.min
   def minList(x) when is_list(x) do
     menor = Enum.min(x)
@@ -85,4 +100,20 @@ defmodule Lista8 do
     maior = Enum.max(x)
   end
 
-end 
+
+
+  #continuando para a 10
+
+  defp insert_cont(x,[]) , do: [x]
+  defp insert_cont(x , [h | t]) when x >= h , do: [h | [x | t]]
+  defp insert_cont(x , [h | t]) , do: [h | insert_cont(x,t)]
+
+  def sort_cont([]) , do: [ ]
+  def sort_cont(l) when is_list(l) do
+    [head | tail] = l
+    insert_cont(head , sort_cont(tail))
+
+  end
+
+
+end
