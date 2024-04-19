@@ -57,6 +57,7 @@ defmodule Felixir.MixProject do
       {:plug_cowboy, "~>2.7"}, #algumas coisas por aqui também foram adicionadas
       {:absinthe, "~> 1.6.4"},
       {:absinthe_plug , "~> 1.5.8"},
+      {:argon2_elixir, "~> 2.4.0"},
     ]
   end
 
