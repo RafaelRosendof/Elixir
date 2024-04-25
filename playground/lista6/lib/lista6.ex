@@ -1,4 +1,5 @@
 defmodule Lista6 do
+  use Timex
 #import List
 
   def calcular(lista) when is_list(lista) do
@@ -36,7 +37,6 @@ defmodule Lista6 do
   #digito 4
 
   def ler_moedaaa() do
-  moeda = []
   #IO.puts("Digite o código da moeda: ")
   moeda = IO.gets("Digite o código da moeda: ")
   |> String.trim()
@@ -50,29 +50,55 @@ defmodule Lista6 do
   end
 end
 
-
-def ler_moed() do
-  IO.puts("Digite o código da moeda: ")
-  moeda_int = IO.gets("")
+def ler_data() do #pode criar uma string com os -
+  data = IO.gets("Digite a data de vencimento no formato DD-MM-AAAA: ")
   |> String.trim()
-  |> String.to_integer()
+  |>String.split("/" , trim: true)
+  |>Enum.map(&String.to_integer/1)
 
-  case moeda_int do
-    _ when is_integer(moeda_int) -> {:ok, [moeda_int]}
-    _ -> {:error, "Código inválido"}
+  case length(data) do
+    3 -> {:ok , data}
+    _ -> {:error , "Errado"}
   end
 end
 
-def runnn() do
-  case ler_moed() do
-    {:ok, moeda} ->
-      IO.puts("Moeda lida com sucesso: #{inspect(moeda)}")
+def ler_valor()do
+  
+end
+
+def diferenca_dias() do
+  case ler_data() do
+    {:ok, data_hoje} ->
+      data_hoje_ano = hd(data_hoje)
+      [_,mes,_] -> IO.puts("#{mes}")   
+
+      |> IO.puts("O ano é: #{data_hoje_ano}")
+
+    {:error, reason} ->
+      IO.puts("Erro: #{reason}")
+      end
+  end
+
+
+def diferenca_mes() do
+  case ler_data() do
+    {:ok, data_hoje} ->
+      case data_hoje do
+        [_, mes, _] ->
+          IO.puts("O mês é: #{mes}")
+          IO.inspect(mes) #ficou melhor agora é fazer isso e montar o bixo lá date
+
+        _ ->
+          IO.puts("Erro: Data inválida") 
+      end
+
     {:error, reason} ->
       IO.puts("Erro: #{reason}")
   end
 end
 
 
+def ler_valor()
 
 
   ############################# questão 2
