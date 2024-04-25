@@ -18,6 +18,63 @@ defmodule Lista6 do
   defp calcular_media(tamanho , soma), do: soma/tamanho #soma / tamanho, básico
 
 
+  def ler_codigo_banco() do
+    IO.puts("Digite o código do banco: ")
+     codigo_banco = IO.gets("")
+     |> String.trim()
+     |> String.split("" , trim: true)
+     |> Enum.map(&String.to_integer/1)
+
+     case length(codigo_banco) do
+       3 -> {:ok , codigo_banco} #
+       _ -> {:error , "Número incorreto "}
+     end
+    # TODO retornar lista
+     # TODO remove this, just a STUB
+  end
+
+  #digito 4
+
+  def ler_moedaaa() do
+  moeda = []
+  #IO.puts("Digite o código da moeda: ")
+  moeda = IO.gets("Digite o código da moeda: ")
+  |> String.trim()
+  |> String.to_integer()
+  #moeda ++= [moeda_int]
+  #moeda = [moeda_int]
+
+  case moeda do
+    9 -> {:ok, moeda}
+    _ -> {:error, "Código inválido "}
+  end
+end
+
+
+def ler_moed() do
+  IO.puts("Digite o código da moeda: ")
+  moeda_int = IO.gets("")
+  |> String.trim()
+  |> String.to_integer()
+
+  case moeda_int do
+    _ when is_integer(moeda_int) -> {:ok, [moeda_int]}
+    _ -> {:error, "Código inválido"}
+  end
+end
+
+def runnn() do
+  case ler_moed() do
+    {:ok, moeda} ->
+      IO.puts("Moeda lida com sucesso: #{inspect(moeda)}")
+    {:error, reason} ->
+      IO.puts("Erro: #{reason}")
+  end
+end
+
+
+
+
   ############################# questão 2
   def transforma(lista) when is_list(lista) do
    #recebe uma lista de numeros em faren
@@ -60,16 +117,6 @@ defmodule Lista6 do
   end
 
 
-  def func_take(0 , _quantos), do : []
-    #recebe quantos e devolve a quantidade de quantos da lista
-  def func_take(_,[]), do: []
-  def func_take(n , [head | tail]) when n > 0 do
-    [head | take(n-1 , tail)]
-  end
-  def func_take(n , quantos) when is_integer(quantos) do
-    func_take(n, 1..quantos)
-  end
-
 
   '''
 defmodule MinhasFuncoes do
@@ -88,4 +135,3 @@ end
 
   #quest
 end
-
