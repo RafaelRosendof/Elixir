@@ -10,7 +10,7 @@ defmodule TarefaFun do
     iterate(termo, soma, i, x, erro)
   end
 
-  defp iterate(termo, soma, i, x, erro) do #aqui tinha Decimal.new(i)
+  defp iterate(termo, soma, i, x, erro) do #when 
     termo_atual = Decimal.mult(termo, Decimal.div(x, i))
 
     soma_atual = Decimal.add(soma, termo_atual)

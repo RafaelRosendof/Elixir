@@ -62,17 +62,17 @@ defmodule Lista8 do
   end
 
   #continuando da 7 agora
-  iSort([]) , do: []
-  iSort(h) when is_list(h) do
+  def iSort([]) , do: [] 
+  def iSort(h) when is_list(h) do
     
   end 
 
-  defp insert(x,l) when is_list(l) and l = []
-  defp insert(x , l) when  is_list(l) and x <= h do  #caso [h|t] and x <=h
+  # defp insert(x,l) when is_list(l) and l = [] , do: []
+  # defp insert(x , l) when  is_list(l) and x <= h do  #caso [h|t] and x <=h
     
-  end 
+  # end 
 
-  defp insert(x ,l) when is_list(l) #tendi mais nada 
+  # defp insert(x ,l) when is_list(l) #tendi mais nada 
 
 
   #pulando para a questão 9 
@@ -83,6 +83,49 @@ defmodule Lista8 do
 
   def maxList(x) when is_list(x) do
     maior = Enum.max(x)
+  end
+
+  def duce([]) , do: [] 
+  def duce(x) when is_list(x) do
+    Enum.reduce(x , [] , fn x , acc -> if x in acc , do: acc , else: [x | acc] end)
+  end
+
+  def refilter([]) , do: []
+  
+  def refilter(x) when is_list(x) do
+    Enum.filter(x , fn(a) -> rem(a,2) == 0 end)
+  end
+
+  #partindo para a 13
+
+  def squareAll([]) , do: []
+  def squareAll(x) when is_list(x) do
+    Enum.map(x , fn(figas) -> figas*figas end)
+  end
+
+  def nestedReverse([]) , do: []
+  def nestedReverse(x) when is_list(x) do
+   Enum.map(x , fn palavra -> Enum.reverse(palavra) end) 
+  end
+
+  def nested_reverse([]), do: []
+  def nested_reverse(list) when is_list(list) do
+    Enum.map(list, fn words ->
+      Enum.map(words, fn word ->
+        Enum.reverse(word)
+      end)
+    end)
+  end
+
+  def atFront([]) , do: []
+  def atFront(x) when is_list(x) do
+    #  // [head | tail] 
+
+  end
+
+ #ou seria 
+  def atFront([head | tail]) do
+    Enum.map() #aplica o tail em todas as sublistas. 
   end
 
 end 
