@@ -1,6 +1,7 @@
 defmodule Lista6 do
-  use Timex
+use Timex
 #import List
+
 
   def calcular(lista) when is_list(lista) do
     {tamanho , soma} = calcular_tamanho_e_soma(lista)
@@ -19,8 +20,21 @@ defmodule Lista6 do
   defp calcular_media(tamanho , soma), do: soma/tamanho #soma / tamanho, básico
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
   def ler_codigo_banco() do
-    IO.puts("Digite o código do banco: ")
+    IO.puts("Digite o código  banco: ")
      codigo_banco = IO.gets("")
      |> String.trim()
      |> String.split("" , trim: true)
@@ -34,6 +48,8 @@ defmodule Lista6 do
      # TODO remove this, just a STUB
   end
 
+
+
   #digito 4
 
   def ler_moedaaa() do
@@ -41,64 +57,73 @@ defmodule Lista6 do
   moeda = IO.gets("Digite o código da moeda: ")
   |> String.trim()
   |> String.to_integer()
-  #moeda ++= [moeda_int]
-  #moeda = [moeda_int]
-
   case moeda do
     9 -> {:ok, moeda}
-    _ -> {:error, "Código inválido "}
+    _ -> {:error, "Moeda inválida"}
   end
 end
 
-def ler_data() do #pode criar uma string com os -
-  data = IO.gets("Digite a data de vencimento no formato DD-MM-AAAA: ")
+
+
+  #Função funcionando e testada
+  defp ler_defi do
+    data =
+      IO.gets("Digite a data de vencimento no formato DD-MM-AAAA: ")
+      |> String.trim()
+      |> String.split("-")
+
+    case data do
+      [day_str, month_str, year_str] when length(data) == 3 ->
+        dia = String.to_integer(day_str)
+        month = String.to_integer(month_str)
+        year = String.to_integer(year_str)
+
+        data_atual = Timex.Date.new!(year, month, dia)
+       # IO.puts(data_atual)
+        #{:ok, data_atual}
+
+        data_fixa = ~D[2000-07-03]
+        figas = Timex.diff(data_atual,data_fixa, :days)
+        #IO.puts("Diferença: #{figas}")
+        fator = figas + 1000
+        {:ok , fator}
+      _ ->
+        {:error, "Formato de data inválido"}
+    end
+  end
+
+  def fator_de_vencimento() do
+    fator = ler_defi()
+    case fator do
+      _ -> fator
+    end
+  end
+
+
+def ler_valor() do
+  valor = IO.gets("Digite o valor do boleto: ")
   |> String.trim()
-  |>String.split("/" , trim: true)
+  |>String.split("", trim: true)
   |>Enum.map(&String.to_integer/1)
+  |> Enum.pad_leading(10, 0)
 
-  case length(data) do
-    3 -> {:ok , data}
-    _ -> {:error , "Errado"}
+  case valor do
+    10 -> {:ok , valor}
+    _ -> {:error , "Valor não esperado"}
   end
 end
 
-def ler_valor()do
-  
-end
+def ler_val() do
+  valor = IO.gets("Digite o valor do boleto: ")
+  |> String.trim()
+  |> String.replace(" ", "") # remove spaces
+  |> String.pad_leading(10, "0")
 
-def diferenca_dias() do
-  case ler_data() do
-    {:ok, data_hoje} ->
-      data_hoje_ano = hd(data_hoje)
-      [_,mes,_] -> IO.puts("#{mes}")   
-
-      |> IO.puts("O ano é: #{data_hoje_ano}")
-
-    {:error, reason} ->
-      IO.puts("Erro: #{reason}")
-      end
-  end
-
-
-def diferenca_mes() do
-  case ler_data() do
-    {:ok, data_hoje} ->
-      case data_hoje do
-        [_, mes, _] ->
-          IO.puts("O mês é: #{mes}")
-          IO.inspect(mes) #ficou melhor agora é fazer isso e montar o bixo lá date
-
-        _ ->
-          IO.puts("Erro: Data inválida") 
-      end
-
-    {:error, reason} ->
-      IO.puts("Erro: #{reason}")
+  case String.length(valor) do
+    10 -> {:ok, valor}
+    _ -> {:error, "Valor não esperado"}
   end
 end
-
-
-def ler_valor()
 
 
   ############################# questão 2
